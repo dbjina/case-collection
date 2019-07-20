@@ -4,11 +4,13 @@
 
 package com.dbjina.string;
 
+import org.joda.time.DateTime;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -85,5 +87,38 @@ class StringCaseTest extends StringCase {
             , ((Number)list.get(0).get("salary")).intValue()
             , equalTo(10000)
         );
+    }
+
+    @DisplayName("JSONString to DateTime 테스트 : 기본")
+    @ParameterizedTest
+    @ValueSource(strings = {
+              "20190721000000"
+            , "2019072100000"
+            , "201907210000"
+            , "20190721000"
+            , "2019072100"
+            , "20190721"
+            , "2019-07-02"
+            , "2019-07-02 16"
+            , "2019-07-02 16:43"
+            , "2019-07-02 16:43:00"
+            , "2019/07/02"
+            , "2019/07/02 16"
+            , "2019/07/02 16:43"
+            , "2019/07/02 16:43:00"
+            , "2019.07.02"
+            , "2019.07.02 16"
+            , "2019.07.02 16:43"
+            , "2019.07.02 16:43:00"
+    })
+    void convertStringToDateTime1(String str) throws Exception {
+        String pattern = "yyyyMMddHHmmss";
+        DateTime dateTime = convertStringToDateTime(str);
+        
+        assertNotNull(dateTime);
+        
+        String expectedDateStr = dateTime.toString(pattern);
+        
+        assertEquals(expectedDateStr, dateTime.toString(pattern));
     }
 }
