@@ -17,9 +17,8 @@ public class StringCase {
      * str 을 Map 으로 변환
      * @param str JSON String
      * @return Map 반환
-     * @throws Exception
      */
-    Map<String, Object> convertStringToMap(String str) throws Exception {
+    Map<String, Object> convertStringToMap(String str) {
         return gson.fromJson(str, new TypeToken<Map<String, Object>>(){}.getType());
     }
 
@@ -27,9 +26,8 @@ public class StringCase {
      * str 을 List&lt;Map&gt; 으로 반환
      * @param str JSON String
      * @return List&lt;Map&gt; 반환
-     * @throws Exception
      */
-    List<Map<String, Object>> convertStringToList(String str) throws Exception {
+    List<Map<String, Object>> convertStringToList(String str) {
         return gson.fromJson(str, new TypeToken<List<Map<String, Object>>>(){}.getType());
     }
 
@@ -38,9 +36,8 @@ public class StringCase {
      * str 을 DateTime 으로 반환
      * @param str 날짜 포맷의 String
      * @return DateTime 반환
-     * @throws Exception
      */
-    DateTime convertStringToDateTime(String str) throws Exception {
+    DateTime convertStringToDateTime(String str) {
         if(str == null)
             return null;
         

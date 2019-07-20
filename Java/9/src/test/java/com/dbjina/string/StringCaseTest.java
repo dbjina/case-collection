@@ -37,7 +37,7 @@ class StringCaseTest extends StringCase {
             , "{name:Kim,'salary':10000}"
             , "{name:Kim,salary:10000}"
     })
-    void convertStringToMap1(String str) throws Exception {
+    void convertStringToMap1(String str) {
         Map<String, Object> map = convertStringToMap(str);
         
         assertNotNull(map);
@@ -51,7 +51,7 @@ class StringCaseTest extends StringCase {
             , "[{name:Kim,'salary':10000}]"
             , "[{name:Kim,salary:10000}]"  
     })
-    void convertStringToList1(String str) throws Exception {
+    void convertStringToList1(String str) {
         List<Map<String, Object>> list = convertStringToList(str);
 
         assertNotNull(list);
@@ -69,7 +69,7 @@ class StringCaseTest extends StringCase {
             , "[{name:Kim,'salary':10000}       ,{name:Lee,'salary':8000}]"
             , "[{name:Kim,salary:10000}         ,{name:Lee,salary:8000}]"
     })
-    void convertStringToList2(String str) throws Exception {
+    void convertStringToList2(String str) {
         List<Map<String, Object>> list = convertStringToList(str);
 
         assertNotNull(list);
@@ -111,7 +111,7 @@ class StringCaseTest extends StringCase {
             , "2019.07.02 16:43"
             , "2019.07.02 16:43:00"
     })
-    void convertStringToDateTime1(String str) throws Exception {
+    void convertStringToDateTime1(String str) {
         String pattern = "yyyyMMddHHmmss";
         DateTime dateTime = convertStringToDateTime(str);
         
