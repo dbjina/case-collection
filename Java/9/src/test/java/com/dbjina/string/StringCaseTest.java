@@ -19,7 +19,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StringCaseTest extends StringCase {
+class StringCaseTest {
 
     @BeforeEach
     void setUp() {
@@ -38,7 +38,7 @@ class StringCaseTest extends StringCase {
             , "{name:Kim,salary:10000}"
     })
     void convertStringToMap1(String str) {
-        Map<String, Object> map = convertStringToMap(str);
+        Map<String, Object> map = StringCase.convertStringToMap(str);
         
         assertNotNull(map);
     }
@@ -52,7 +52,7 @@ class StringCaseTest extends StringCase {
             , "[{name:Kim,salary:10000}]"  
     })
     void convertStringToList1(String str) {
-        List<Map<String, Object>> list = convertStringToList(str);
+        List<Map<String, Object>> list = StringCase.convertStringToList(str);
 
         assertNotNull(list);
         assertThat("사이즈가 1개 이어야 함"
@@ -70,7 +70,7 @@ class StringCaseTest extends StringCase {
             , "[{name:Kim,salary:10000}         ,{name:Lee,salary:8000}]"
     })
     void convertStringToList2(String str) {
-        List<Map<String, Object>> list = convertStringToList(str);
+        List<Map<String, Object>> list = StringCase.convertStringToList(str);
 
         assertNotNull(list);
         assertThat("사이즈가 2이어야 함"
@@ -113,7 +113,7 @@ class StringCaseTest extends StringCase {
     })
     void convertStringToDateTime1(String str) {
         String pattern = "yyyyMMddHHmmss";
-        DateTime dateTime = convertStringToDateTime(str);
+        DateTime dateTime = StringCase.convertStringToDateTime(str);
         
         assertNotNull(dateTime);
         

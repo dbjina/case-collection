@@ -11,6 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 public class StringCase {
+    
+    private StringCase() {
+        
+    }
+    
     private static final Gson gson = new Gson();
 
     /**
@@ -18,7 +23,7 @@ public class StringCase {
      * @param str JSON String
      * @return Map 반환
      */
-    Map<String, Object> convertStringToMap(String str) {
+    public static Map<String, Object> convertStringToMap(String str) {
         return gson.fromJson(str, new TypeToken<Map<String, Object>>(){}.getType());
     }
 
@@ -27,7 +32,7 @@ public class StringCase {
      * @param str JSON String
      * @return List&lt;Map&gt; 반환
      */
-    List<Map<String, Object>> convertStringToList(String str) {
+    public static List<Map<String, Object>> convertStringToList(String str) {
         return gson.fromJson(str, new TypeToken<List<Map<String, Object>>>(){}.getType());
     }
 
@@ -37,7 +42,7 @@ public class StringCase {
      * @param str 날짜 포맷의 String
      * @return DateTime 반환
      */
-    DateTime convertStringToDateTime(String str) {
+    public static DateTime convertStringToDateTime(String str) {
         if(str == null)
             return null;
         
