@@ -3,11 +3,15 @@ package com.dbjina.string;
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class StringCase {
@@ -54,5 +58,11 @@ public class StringCase {
         }
         
         return DateTimeFormat.forPattern(pattern).parseDateTime(removedStr);
+    }
+    
+    public static String parsePhoneNumber(String str) throws NumberParseException {
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+        PhoneNumber phoneNumber = phoneUtil.parse(str, Locale.KOREA.getCountry());
+        return phoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
     }
 }

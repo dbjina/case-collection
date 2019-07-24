@@ -4,6 +4,7 @@
 
 package com.dbjina.string;
 
+import com.google.i18n.phonenumbers.NumberParseException;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -120,5 +121,65 @@ class StringCaseTest {
         String expectedDateStr = dateTime.toString(pattern);
         
         assertEquals(expectedDateStr, dateTime.toString(pattern));
+    }
+
+
+    @DisplayName("전화번호 to 한국 전화번호 표시 테스트 : 기본")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "01012341234"
+            , "0171231234"
+            , "0111231234"
+            , "021231234"
+            , "0212341234"
+            , "0511231234"
+            , "16881234"
+            , "010-1234-1234"
+            , "017-123-1234"
+            , "011-123-1234"
+            , "02-123-1234"
+            , "02-1234-1234"
+            , "051-123-1234"
+            , "1688-1234"
+            , "010 1234 1234"
+            , "017 123 1234"
+            , "011 123 1234"
+            , "02 123 1234"
+            , "02 1234 1234"
+            , "051 123 1234"
+            , "1688 1234"
+            , "+82 10-1234-1234"
+            , "+82 17-123-1234"
+            , "+82 11-123-1234"
+            , "+82 2-123-1234"
+            , "+82 2-1234-1234"
+            , "+82 51-123-1234"
+            , "+82 010-1234-1234"
+            , "+82 017-123-1234"
+            , "+82 011-123-1234"
+            , "+82 02-123-1234"
+            , "+82 02-1234-1234"
+            , "+82 051-123-1234"
+    })
+    void parsePhoneNumber1(String str) throws NumberParseException {
+        String number = StringCase.parsePhoneNumber(str);
+
+        assertNotNull(number);
+
+        assertNotEquals("", number);
+    }
+
+    @DisplayName("전화번호 to 한국 전화번호 표시 테스트 : Throw NumberParseException")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            ""
+            , "abcdefghijk"
+            , "0!0!234!234"
+            , "공일공일이삼사일이삼사"
+    })
+    void parsePhoneNumber2(String str) throws NumberParseException {
+        assertThrows(NumberParseException.class, () -> {
+            System.out.println(StringCase.parsePhoneNumber(str));
+        });
     }
 }
